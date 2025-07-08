@@ -40,13 +40,19 @@ var DefaultServer = NewServer()
 
 // ServeConn runs the server on a single connection.
 // ServeConn blocks, serving the connection until the client hangs up.
-func (server *Server) ServeConn(conn io.ReadWriteCloser) {
+func (server *Server) ServeConn(conn io.ReadWriteCloser, clientAddress string) {
+	log.Println("客户端地址:", clientAddress)
 	defer func() { _ = conn.Close() }()
+	// 1. 读取客户端发送来的信息
 	var opt Option
 	if err := json.NewDecoder(conn).Decode(&opt); err != nil {
-		log.Println("rpc server: options error: ", err)
+		if err == io.EOF {
+			log.Println("connection closed by client before sending options")
+		}
+		log.Println("codec: rpc server options error, ", err)
 		return
 	}
+	// 2. 进行校验
 	if opt.MagicNumber != MagicNumber {
 		log.Printf("rpc server: invalid magic number %x", opt.MagicNumber)
 		return
@@ -56,6 +62,7 @@ func (server *Server) ServeConn(conn io.ReadWriteCloser) {
 		log.Printf("rpc server: invalid codec type %s", opt.CodecType)
 		return
 	}
+	// 3. 解码，发送响应
 	server.serveCodec(f(conn))
 }
 
@@ -66,16 +73,19 @@ func (server *Server) serveCodec(cc codec.Codec) {
 	sending := new(sync.Mutex) // make sure to send a complete response
 	wg := new(sync.WaitGroup)  // wait until all request are handled
 	for {
+		// 1. 读取请求
 		req, err := server.readRequest(cc)
 		if err != nil {
 			if req == nil {
 				break // it's not possible to recover, so close the connection
 			}
+			// 2. 发送响应
 			req.h.Error = err.Error()
 			server.sendResponse(cc, req.h, invalidRequest, sending)
 			continue
 		}
 		wg.Add(1)
+		// 3. 并发处理请求
 		go server.handleRequest(cc, req, sending, wg)
 	}
 	wg.Wait()
@@ -140,7 +150,11 @@ func (server *Server) Accept(lis net.Listener) {
 			log.Println("rpc server: accept error:", err)
 			return
 		}
-		go server.ServeConn(conn)
+
+		// 获取客户端地址
+		clientAddress := conn.RemoteAddr().String()
+
+		go server.ServeConn(conn, clientAddress)
 	}
 }
 
