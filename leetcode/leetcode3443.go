@@ -11,10 +11,10 @@ import (
 1. make的基本语法，可以用来创建切片，映射，通道等等
 2. rune是一个完整的unicode字符
 3. 分支的语句, swich如何写，if...else如何写等等
-4. abs和max, min，最好自己实现，math.Abs() 这个是float类型的
+4. abs和max, minInt，最好自己实现，math.Abs() 这个是float类型的
 
 思维层面
-实际上，可以简化为 Math.min(lr + ud + k * 2， i+1)
+实际上，可以简化为 Math.minInt(lr + ud + k * 2， i+1)
 只要维护lr, ud两个变量就行了
 */
 func maxDistance(ss string, k int) (int, error) {
@@ -38,9 +38,9 @@ func solve1(ss string, k int) int {
 		lr := int(math.Abs(float64(s[0] - s[1])))
 		ud := int(math.Abs(float64(s[2] - s[3])))
 
-		lrChange := min(k, min(s[0], s[1]))
+		lrChange := minInt(k, minInt(s[0], s[1]))
 		restK := k - lrChange
-		udChange := min(restK, min(s[2], s[3]))
+		udChange := minInt(restK, minInt(s[2], s[3]))
 
 		curValue := lr + ud + lrChange*2 + udChange*2
 		if ans < curValue {
@@ -69,7 +69,7 @@ func solve(s string, k int) int {
 		} else if c == 'W' {
 			longitude--
 		}
-		ans = maxInt(ans, min(abs(latitude)+abs(longitude)+k*2, i+1))
+		ans = maxInt(ans, minInt(abs(latitude)+abs(longitude)+k*2, i+1))
 	}
 	return ans
 }
@@ -87,7 +87,7 @@ func maxInt(a, b int) int {
 	return a
 }
 
-func min(a, b int) int {
+func minInt(a, b int) int {
 	if a < b {
 		return a
 	}
