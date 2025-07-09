@@ -51,17 +51,25 @@ func TestSort(t *testing.T) {
 
 func TestLeetcode3443(t *testing.T) {
 	s := "NWSE"
-	ans1 := maxDistance(s, 1)
+	ans1, err := maxDistance(s, 1)
 
-	if ans1 != 3 {
-		t.Error("测试用例1错误, ans = ", ans1)
+	if ans1 != 3 || err != nil {
+		if err != nil {
+			t.Error(err)
+		} else {
+			t.Error("测试用例1错误, ans = ", ans1)
+		}
 	}
 
 	fmt.Println("========================================================")
 
 	s = "NSWWEW"
-	ans1 = maxDistance(s, 3)
+	ans1, err = maxDistance(s, 3)
 	if ans1 != 6 {
-		t.Error("测试用例2错误, ans = ", ans1)
+		if err != nil {
+			t.Error(err)
+		} else {
+			t.Error("测试用例2错误, ans = ", ans1)
+		}
 	}
 }

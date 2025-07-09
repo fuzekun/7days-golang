@@ -1,6 +1,7 @@
 package leetcode
 
 import (
+	"errors"
 	"fmt"
 	"math"
 )
@@ -16,9 +17,13 @@ import (
 实际上，可以简化为 Math.min(lr + ud + k * 2， i+1)
 只要维护lr, ud两个变量就行了
 */
-func maxDistance(ss string, k int) int {
-	//return solve1(ss, k)
-	return solve(ss, k)
+func maxDistance(ss string, k int) (int, error) {
+	ans1 := solve1(ss, k)
+	ans2 := solve(ss, k)
+	if ans1 != ans2 {
+		return -1, errors.New("两次计算结果不同，看看哪个方法错了")
+	}
+	return ans1, nil
 }
 
 func solve1(ss string, k int) int {
@@ -64,7 +69,7 @@ func solve(s string, k int) int {
 		} else if c == 'W' {
 			longitude--
 		}
-		ans = max(ans, min(abs(latitude)+abs(longitude)+k*2, i+1))
+		ans = maxInt(ans, min(abs(latitude)+abs(longitude)+k*2, i+1))
 	}
 	return ans
 }
@@ -75,7 +80,7 @@ func abs(a int) int {
 	}
 	return a
 }
-func max(a, b int) int {
+func maxInt(a, b int) int {
 	if a < b {
 		return b
 	}

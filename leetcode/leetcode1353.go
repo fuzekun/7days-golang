@@ -27,7 +27,7 @@ func maxEvents(events [][]int) int {
 	n := len(events)
 	maxDay := 0
 	for _, events := range events {
-		maxDay = max(events[1], maxDay)
+		maxDay = maxInt(events[1], maxDay)
 	}
 	fmt.Println("maxDay = ", maxDay)
 
