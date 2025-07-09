@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"math"
+	"time"
 )
 
 /*
@@ -18,11 +19,24 @@ import (
 只要维护lr, ud两个变量就行了
 */
 func maxDistance(ss string, k int) (int, error) {
+	// 计算第一个用的时间
+	start1 := time.Now()
 	ans1 := solve1(ss, k)
+	end1 := time.Now()
+	time1 := end1.Sub(start1)
+
+	// 计算第二个用的时间
+	start2 := time.Now()
 	ans2 := solve(ss, k)
+	end2 := time.Now()
+	time2 := end2.Sub(start2)
+
 	if ans1 != ans2 {
 		return -1, errors.New("两次计算结果不同，看看哪个方法错了")
 	}
+
+	fmt.Printf("两次计算的时间分别为 time1 = %s, time2 = %s\n", time1, time2)
+
 	return ans1, nil
 }
 
