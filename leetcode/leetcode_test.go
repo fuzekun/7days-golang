@@ -73,3 +73,21 @@ func TestLeetcode3443(t *testing.T) {
 		}
 	}
 }
+
+func Test_test(t *testing.T) {
+	fmt.Println("hello world")
+}
+
+func Test_leetcode_3169(t *testing.T) {
+
+	meetings := [][]int{{5, 7}, {1, 3}, {9, 10}}
+	ans1 := countDays(10, meetings)
+
+	fmt.Println(ans1)
+}
+
+func Test_leetcode_1760(t *testing.T) {
+	nums := []int{431, 922, 158, 60, 192, 14, 788, 146, 788, 775, 772, 792, 68, 143, 376, 375, 877, 516, 595, 82, 56, 704, 160, 403, 713, 504, 67, 332, 26}
+	ans := minimumSize(nums, 80)
+	fmt.Println("ans = ", ans)
+}
