@@ -12,6 +12,7 @@ import (
 贪心好像也可以，最小的开始匹配，单指针从左到右找最小的
 */
 func matchPlayersAndTrainers(players []int, trainers []int) int {
+	where()
 	sort.Ints(players)
 	sort.Ints(trainers)
 	fmt.Println("players = ", players)

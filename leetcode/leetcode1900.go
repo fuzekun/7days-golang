@@ -62,10 +62,12 @@ n 名运动员参与一场锦标赛，所有运动员站成一排，并根据 �
 算法学习
 1.
 */
-var where = log.Print
+var where = func() {
+	log.SetFlags(log.Llongfile)
+	log.Print()
+}
 
 func earliestAndLatest(n int, firstPlayer int, secondPlayer int) []int {
-	log.SetFlags(log.Llongfile)
 	where()
 	type pair struct{ earliest, latest int }
 	// 0.初始化记忆数组为最大值
