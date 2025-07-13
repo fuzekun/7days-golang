@@ -10,7 +10,10 @@ import (
 )
 
 func main() {
+	testInt()
+	testTime()
 	testStrings()
+
 }
 
 func testInt() {
