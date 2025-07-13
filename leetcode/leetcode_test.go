@@ -91,3 +91,14 @@ func Test_leetcode_1760(t *testing.T) {
 	ans := minimumSize(nums, 80)
 	fmt.Println("ans = ", ans)
 }
+
+func Test_leetcode_1900(t *testing.T) {
+	ans := earliestAndLatest(11, 2, 4)
+
+	fmt.Println(ans)
+}
+
+func Test_leetcode_2410(t *testing.T) {
+	ans := matchPlayersAndTrainers([]int{4, 7, 9}, []int{8, 2, 5, 8})
+	fmt.Println(ans)
+}
