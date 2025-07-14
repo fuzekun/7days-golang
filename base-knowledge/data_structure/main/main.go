@@ -4,6 +4,8 @@ import (
 	"base-knowledge/data_structure"
 	"bytes"
 	"fmt"
+	"strconv"
+	"unicode/utf8"
 )
 
 func main() {
@@ -21,6 +23,10 @@ func main() {
 	testAppendByte()
 	// 测试字符串反转
 	testReverse()
+	// 测试链表
+	data_structure.TestLinkedList()
+	// 测试字符串的相关
+	testStrings()
 }
 
 func testArrayDefine() {
@@ -130,4 +136,23 @@ func testReverse() {
 	// variant: using [] int for runes (necessary for Unicode-strings!):
 	s := "My Test String!"
 	fmt.Println(s, " --> ", reverse(s))
+}
+
+func testStrings() {
+	s := "Hello World"
+	fmt.Println(string(s[:1]))
+	chars := []rune(s)
+	fmt.Println(string(chars))
+	fmt.Println(utf8.RuneCountInString(s))
+	new_chars := append(chars, '中')
+	fmt.Println(new_chars)
+	s = "你好中国"
+	fmt.Println(string(s[:1]))
+	chars = []rune(s)
+	fmt.Println(string(chars[:1]))
+	s = "0132"
+	fmt.Println(strconv.Atoi(s))
+	ints := 133
+	s = strconv.Itoa(ints)
+	fmt.Println(s[:2])
 }
