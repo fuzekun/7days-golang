@@ -27,6 +27,11 @@ func main() {
 	data_structure.TestLinkedList()
 	// 测试字符串的相关
 	testStrings()
+	// 测试map数组的初始化
+	data_structure.TestMapArrayInit()
+	// 测试map的key排序
+	data_structure.TestMapSort()
+
 }
 
 func testArrayDefine() {

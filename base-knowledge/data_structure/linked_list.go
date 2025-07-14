@@ -4,7 +4,9 @@ import "fmt"
 
 type ListNode struct {
 	Val  int
+	Key  int
 	Next *ListNode
+	Prev *ListNode
 }
 
 func getDecimalValue(head *ListNode) int {
