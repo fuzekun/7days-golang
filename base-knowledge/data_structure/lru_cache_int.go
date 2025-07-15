@@ -29,12 +29,9 @@ type LRUCache struct {
 	capacity int
 }
 
+// 工厂方法，构建一个LRUCache，主要是初始化一些参数
 func Constructor(capacity int) LRUCache {
-	cache := LRUCache{}
-	cache.mp = make(map[int]*ListNode)
-	cache.list = LinkedListNew()
-	cache.capacity = capacity
-	return cache
+	return LRUCache{make(map[int]*ListNode), NewLinkedList(), capacity}
 }
 
 func (this *LRUCache) Get(key int) int {
@@ -78,11 +75,9 @@ type LinkedList struct {
 	Head, Tail *ListNode
 }
 
-// 工厂方法，构建一个链表
-func LinkedListNew() *LinkedList {
-	list := new(LinkedList)
-	list.Head = new(ListNode)
-	list.Tail = new(ListNode)
+// 工厂方法，构建一个链表，主要的初始化操作，就是构建一个头尾指针
+func NewLinkedList() *LinkedList {
+	list := &LinkedList{new(ListNode), new(ListNode)}
 	list.Head.Next = list.Tail
 	list.Tail.Prev = list.Head
 	return list
