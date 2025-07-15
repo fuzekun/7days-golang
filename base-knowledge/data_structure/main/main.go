@@ -31,7 +31,8 @@ func main() {
 	data_structure.TestMapArrayInit()
 	// 测试map的key排序
 	data_structure.TestMapSort()
-
+	// 测试小根堆 or 测试优先队列
+	data_structure.TestIntHeap()
 }
 
 func testArrayDefine() {
