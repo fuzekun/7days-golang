@@ -102,3 +102,10 @@ func Test_leetcode_2410(t *testing.T) {
 	ans := matchPlayersAndTrainers([]int{4, 7, 9}, []int{8, 2, 5, 8})
 	fmt.Println(ans)
 }
+
+func Test_leetcode_3136(t *testing.T) {
+	ans := isValid("234Adas")
+	fmt.Println(ans)
+	ans2 := isValid("a3$e")
+	fmt.Println(ans2)
+}
