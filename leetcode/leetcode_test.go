@@ -109,3 +109,25 @@ func Test_leetcode_3136(t *testing.T) {
 	ans2 := isValid("a3$e")
 	fmt.Println(ans2)
 }
+
+func Test_leetcode_3201(t *testing.T) {
+	nums := []int{0, 1, 0, 1}
+	ans1 := maximumLength(nums)
+	if ans1 != 4 {
+		t.Error(nums, "错误,ans应该为4，实际为:", ans1)
+	}
+	nums = []int{1, 2, 1, 1, 2, 1, 2}
+	ans2 := maximumLength(nums)
+	if ans2 != 6 {
+		t.Error(nums, "错误，ans应该6，实际为:", ans2)
+	}
+}
+
+func Test_leetcode_3202(t *testing.T) {
+	ans := leetcode3203MaximumLength([]int{1, 2, 3, 4, 5}, 2)
+	if ans != 5 {
+		// 我这么求的是，总和为s的最长子序列的长度
+		// 实际上需要求的是，相邻两项的和为s的最长子序列的长度
+		t.Error("第一个测试用例失败: ans = 5，实际为:", ans)
+	}
+}

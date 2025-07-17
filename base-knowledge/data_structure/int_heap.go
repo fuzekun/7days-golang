@@ -26,6 +26,8 @@ func (h *IntHeap) Push(x interface{}) {
 func (h *IntHeap) Pop() interface{} {
 	old := *h
 	n := len(old)
+	// 注意这里应该干掉最后一个元素，因为heap的Pop已经帮你交换了old[0]和old[n-1]了
+	// heap.Pop()实现了：1. 交换第一个和最后一个元素。2. 调整堆。所以你只需要干掉最后一个元素，其他的操作由heap帮你实现了。
 	x := old[n-1]
 	*h = old[0 : n-1]
 	return x
