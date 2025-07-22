@@ -7,10 +7,10 @@ import (
 	"strconv"
 )
 
-func main() {
-	testReflect()
-	myPrint(Day(1), "was", Celsius(18.36)) // Tuesday was 18.4 °C
-}
+//func main() {
+//	testReflect()
+//	myPrint(Day(1), "was", Celsius(18.36)) // Tuesday was 18.4 °C
+//}
 
 func testReflect() {
 	var x float64 = 3.4

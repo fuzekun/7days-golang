@@ -17,3 +17,11 @@ func leetcode3203MaximumLength(nums []int, k int) int {
 
 	return res
 }
+
+var k int
+var nums []int
+
+// 以nums[cur]结尾的最大值
+// 等于以i := range(k)结尾的最大值
+// f[s] ：表示和为s的最大值,f[s] =
+// f[x]：表示以x结尾的最大值,f[x] =

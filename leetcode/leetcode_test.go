@@ -131,3 +131,15 @@ func Test_leetcode_3202(t *testing.T) {
 		t.Error("第一个测试用例失败: ans = 5，实际为:", ans)
 	}
 }
+
+func Test_leetcode1695(t *testing.T) {
+	a := []int{4, 2, 4, 5, 6}
+	if maximumUniqueSubarray(a) != 17 {
+		t.Error(a)
+	}
+	a = []int{5, 2, 1, 2, 5, 2, 1, 2, 5}
+	if maximumUniqueSubarray(a) != 8 {
+		t.Error(a)
+	}
+
+}
